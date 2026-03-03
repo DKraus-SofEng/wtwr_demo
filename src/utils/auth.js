@@ -1,42 +1,43 @@
-import { BASE_URL } from "./config";
+// Utility to get/set users in localStorage
+function getStoredUsers() {
+    const data = localStorage.getItem("users");
+    return data ? JSON.parse(data) : [];
+}
+function setStoredUsers(users) {
+    localStorage.setItem("users", JSON.stringify(users));
+}
+function setCurrentUser(user) {
+    localStorage.setItem("currentUser", JSON.stringify(user));
+}
+function getCurrentUser() {
+    const data = localStorage.getItem("currentUser");
+    return data ? JSON.parse(data) : null;
+}
 
-const handleResponse = async (res) => {
-    const data = await res.json();
-    if (res.ok) return data;
-    return Promise.reject(data.message || "Token check failed");
-};
+export function login({ email, password }) {
+    const users = getStoredUsers();
+    const user = users.find(
+        (u) => u.email === email && u.password === password,
+    );
+    if (user) {
+        setCurrentUser(user);
+        return Promise.resolve(user);
+    }
+    return Promise.reject("Invalid credentials");
+}
 
-// SIGNUP (REGISTER) function
-export const signup = ({ name, avatar, email, password }) => {
-    return fetch(`${BASE_URL}/signup`, {
-        method: "POST",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name, avatar, email, password }),
-    }).then(handleResponse);
-};
+export function register({ name, avatar, email, password }) {
+    let users = getStoredUsers();
+    if (users.find((u) => u.email === email)) {
+        return Promise.reject("User already exists");
+    }
+    const newUser = { name, avatar, email, password };
+    users.push(newUser);
+    setStoredUsers(users);
+    setCurrentUser(newUser);
+    return Promise.resolve(newUser);
+}
 
-// SIGNIN (LOGIN) function
-export const signin = (email, password) => {
-    return fetch(`${BASE_URL}/signin`, {
-        method: "POST",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-    }).then(handleResponse);
-};
-
-// CHECK TOKEN function
-export const checkToken = (token) => {
-    return fetch(`${BASE_URL}/users/me`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-        },
-    }).then(handleResponse);
-};
+export function getUserInfo() {
+    return Promise.resolve(getCurrentUser());
+}

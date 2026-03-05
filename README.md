@@ -1,5 +1,12 @@
 # Tripleten Software Engineering Program: Project React
 
+## Live Demo
+
+- **Frontend:** https://storage.googleapis.com/wtwr-demo-frontend-dk/index.html
+- **Backend API:** https://project-e358f1a6-c26a-4de7-bd3.uc.r.appspot.com
+
+The backend only accepts image URLs (not file uploads) for clothing items.
+
 ## WTWR (What to Wear)
 
 This is a React + Vite app that recommends clothing based on the current weather for the user's location. It is an educational project of the fulltime Software Engineering program at TripleTen.
@@ -10,7 +17,7 @@ This is a React + Vite app that recommends clothing based on the current weather
 - Normalizes temperature (F/C) and day/night
 - Recommends clothing cards filtered by weather type (hot/warm/cold)
 - Temperature unit controlled via a context and a toggle switch
-- User can add their own clothing items via a modal form
+- User can add their own clothing items via a modal form (image URL only)
 - Responsive design for desktop and mobile
 
 ## Core Technologies / Tech Stack
@@ -32,12 +39,12 @@ This is a React + Vite app that recommends clothing based on the current weather
 
 This app requires the WTWR Express backend to provide user, clothing, and weather data.
 
-- By default, the frontend expects the backend at `http://localhost:3001` (update API URL in your config if needed).
-- Follow the setup instructions in the backend repo to run the backend locally.
+- By default, the frontend expects the backend at `https://project-e358f1a6-c26a-4de7-bd3.uc.r.appspot.com` (update API URL in your config if needed).
+- For local development, you can use `http://localhost:3001`.
 
 ## How to Run
 
-1. Start the backend server (see backend README for details)
+1. Start the backend server (see backend README for details, or use the cloud backend)
 2. Start the frontend:
    - Clone the repo
    - Install dependencies: `npm install`
@@ -90,7 +97,6 @@ npm run test
 - **Figma**: [Design][(https://www.figma.com/design/bfVOvqlLmoKZ5lpro8WWBe/Sprint-14_-WTWR?node-id=0-1&p=f&t=AU8kFAxDCsvKCeJI-0](https://www.figma.com/design/bfVOvqlLmoKZ5lpro8WWBe/Sprint-14_-WTWR?node-id=0-1&p=f&t=AU8kFAxDCsvKCeJI-0)
 
 - **GitHub Pages**: [Deployed Project](https://DKraus-SofEng.github.io/se_project_react/)
-- **Custom Domain**: [wtwr.bot.nu](https://wtwr.bot.nu/)
 
 - **Project Pitch Video**: [Watch here](https://www.loom.com/share/c322926d4fff4ba684481389b3af9d2a)
 
@@ -98,6 +104,8 @@ npm run test
 
 ## Deployment
 
-- Production backend API: https://api.wtwr.bot.nu
+- Production backend API: https://project-e358f1a6-c26a-4de7-bd3.uc.r.appspot.com
+- Production frontend: https://storage.googleapis.com/wtwr-demo-frontend-dk/index.html
+- No custom domain is currently configured for the live demo. The public URL is the Google Cloud Storage bucket link above.
 - For local development, the frontend expects the backend at `http://localhost:3001`
 - Update the API URL in your frontend config to switch between local and production

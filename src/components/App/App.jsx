@@ -155,8 +155,8 @@ function App() {
                 .then((updatedCard) => {
                     setClothingItems((cards) =>
                         cards.map((item) =>
-                            item._id === id ? updatedCard.data : item
-                        )
+                            item._id === id ? updatedCard.data : item,
+                        ),
                     );
                 })
                 .catch(console.error);
@@ -166,8 +166,8 @@ function App() {
                 .then((updatedCard) => {
                     setClothingItems((cards) =>
                         cards.map((item) =>
-                            item._id === id ? updatedCard.data : item
-                        )
+                            item._id === id ? updatedCard.data : item,
+                        ),
                     );
                 })
                 .catch(console.error);
@@ -245,6 +245,18 @@ function App() {
     return (
         <CurrentTemperatureUnitProvider>
             <div className="app">
+                <div
+                    style={{
+                        background: "yellow",
+                        color: "black",
+                        fontWeight: "bold",
+                        padding: "1rem",
+                        textAlign: "center",
+                        zIndex: 9999,
+                    }}
+                >
+                    TEST: If you see this, React is rendering!
+                </div>
                 <Header
                     weatherData={weatherData}
                     handleOpenAddGarmentModal={handleOpenAddGarmentModal}

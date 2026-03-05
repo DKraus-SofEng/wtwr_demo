@@ -9,7 +9,7 @@ const clothingItemsRouter = require("./routes/clothingItems");
 const errorHandler = require(`./middlewares/error-handler`);
 const { errors } = require("celebrate");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
-//stupid comment
+
 const app = express();
 const { PORT = 3001 } = process.env;
 

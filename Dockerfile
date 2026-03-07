@@ -20,4 +20,4 @@ EXPOSE 8080
 ENV PORT=8080
 
 # Start the server (update to your main file if not server.js)
-CMD ["node", "server.js"]
+CMD ["node", "se_project_express/server.js"]

@@ -249,6 +249,8 @@ function App() {
             })
             .catch(console.error);
     }, []);
+    console.log("clothingItems", clothingItems);
+    console.log("weatherData", weatherData);
 
     return (
         <CurrentTemperatureUnitProvider>

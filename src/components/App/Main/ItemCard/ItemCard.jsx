@@ -15,6 +15,8 @@ function ItemCard({ clothingItem, onCardClick, onCardLike, isLiked }) {
                 alt={clothingItem.name}
                 className="card__image"
                 onClick={handleOpenCard}
+                aria-label={`View details for ${clothingItem.name}`}
+                title={`View details for ${clothingItem.name}`}
             />
             <div className="card__header">
                 <h2 className="card__title">{clothingItem.name}</h2>
@@ -24,10 +26,22 @@ function ItemCard({ clothingItem, onCardClick, onCardLike, isLiked }) {
                         onClick={() =>
                             onCardLike({ id: clothingItem._id, isLiked })
                         }
+                        aria-label={
+                            isLiked
+                                ? `Unlike ${clothingItem.name}`
+                                : `Like ${clothingItem.name}`
+                        }
+                        title={
+                            isLiked
+                                ? `Unlike ${clothingItem.name}`
+                                : `Like ${clothingItem.name}`
+                        }
                     >
                         <img
                             src={isLiked ? likeActive : likeDefault}
                             alt={isLiked ? "Liked" : "Like"}
+                            aria-label={isLiked ? "Liked" : "Like"}
+                            title={isLiked ? "Liked" : "Like"}
                         />
                     </button>
                 )}

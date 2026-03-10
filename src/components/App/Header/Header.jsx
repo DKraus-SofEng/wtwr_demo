@@ -49,14 +49,24 @@ function Header({
             <header className="header">
                 {/* Left side: logo and location */}
                 <div className="header__side">
-                    <Link to="/">
+                    <Link
+                        to="/"
+                        aria-label="Go to home page"
+                        title="Go to home page"
+                    >
                         <img
                             className="header__logo"
                             src={logo}
                             alt="wtwr logo"
+                            aria-label="WTWR: Click to return to home page"
+                            title="WTWR: Click to return to home page"
                         />
                     </Link>
-                    <p className="header__location">
+                    <p
+                        className="header__location"
+                        aria-label={`Current location and date: ${dateStr}`}
+                        title={`Current location and date: ${dateStr}`}
+                    >
                         <time className="header__dateTime" dateTime={now}>
                             {dateStr}
                         </time>
@@ -66,11 +76,17 @@ function Header({
                 {/* Mobile layout: stacked rows for logo/date/location and user info */}
                 <div className="header__mobile-wrapper">
                     <div className="header__mobile-top">
-                        <Link to="/">
+                        <Link
+                            to="/"
+                            aria-label="Go to home page"
+                            title="Go to home page"
+                        >
                             <img
                                 className="header__logo"
                                 src={logo}
                                 alt="wtwr logo"
+                                aria-label="WTWR: Click to return to home page"
+                                title="WTWR: Click to return to home page"
                             />
                         </Link>
                         <p className="header__location">
@@ -119,6 +135,8 @@ function Header({
                             <button
                                 onClick={handleOpenAddGarmentModal}
                                 className="header__add-clothes-btn"
+                                aria-label="Add new clothes"
+                                title="Add new clothes"
                             >
                                 + Add clothes
                             </button>
@@ -146,12 +164,16 @@ function Header({
                             <button
                                 className="header__auth-btn"
                                 onClick={handleOpenRegisterModal}
+                                aria-label="Sign up for an account"
+                                title="Sign up for an account"
                             >
                                 Sign Up
                             </button>
                             <button
                                 className="header__auth-btn"
                                 onClick={handleOpenLoginModal}
+                                aria-label="Log in to your account"
+                                title="Log in to your account"
                             >
                                 Log In
                             </button>

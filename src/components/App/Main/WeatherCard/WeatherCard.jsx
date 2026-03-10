@@ -15,22 +15,30 @@ function WeatherCard({ weatherData }) {
         weatherConditionImages?.[timeOfDay] &&
         weatherConditionImages[timeOfDay][condition]
             ? weatherConditionImages[timeOfDay][condition]
-            : weatherConditionImages?.[timeOfDay]?.default ??
-              weatherConditionImages.day.default;
+            : (weatherConditionImages?.[timeOfDay]?.default ??
+              weatherConditionImages.day.default);
 
     const temp =
         typeof weatherData?.temp === "object"
-            ? weatherData.temp[currentTempUnit] ?? weatherData.temp.F
-            : weatherData?.temp ?? 0;
+            ? (weatherData.temp[currentTempUnit] ?? weatherData.temp.F)
+            : (weatherData?.temp ?? 0);
 
     return (
-        <section className="weather-card">
+        <section
+            className="weather-card"
+            aria-label="Current weather information"
+        >
             <img
                 className="weather-card__image"
                 src={weatherCardImage.image}
                 alt={weatherCardImage.alt}
+                aria-label={weatherCardImage.alt}
+                title={weatherCardImage.alt}
             />
-            <p className="weather-card__temp">
+            <p
+                className="weather-card__temp"
+                aria-label={`Current temperature: ${temp} degrees ${currentTempUnit}`}
+            >
                 {temp}&deg; {currentTempUnit}
             </p>
         </section>

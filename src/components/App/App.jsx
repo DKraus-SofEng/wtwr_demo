@@ -131,10 +131,18 @@ function App() {
 
     function handleAddItemSubmit(inputValues) {
         addItem({ ...inputValues, token })
-            .then((res) => {
-                setClothingItems([res.data, ...clothingItems]);
+            .then((item) => {
+                if (!item || !item._id) {
+                    console.error(
+                        "Add item API returned unexpected response:",
+                        item,
+                    );
+                }
+                setClothingItems([item, ...clothingItems]);
             })
-            .catch(console.error);
+            .catch((err) => {
+                console.error("Failed to add item:", err);
+            });
     }
 
     function handleDeleteItem() {
@@ -299,6 +307,7 @@ function App() {
                             </ProtectedRoute>
                         }
                     ></Route>
+                    <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
                 <Footer />
                 <RegisterModal

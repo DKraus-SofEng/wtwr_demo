@@ -22,7 +22,7 @@ mongoose
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://storage.googleapis.com",
+    origin: "d ",
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     credentials: true,
   })

@@ -20,6 +20,7 @@ mongoose
   })
   .catch(console.error);
 app.use(express.json());
+console.log("CORS ORIGIN SET TO:", "https://lucky-pudding-e6ce7a.netlify.app");
 app.use(
   cors({
     origin: "https://lucky-pudding-e6ce7a.netlify.app",

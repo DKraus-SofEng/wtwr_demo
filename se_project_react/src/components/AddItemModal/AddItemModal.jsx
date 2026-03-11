@@ -40,17 +40,11 @@ function AddItemModal({ isOpen, onClose, onAddItem }) {
             imageUrl: "",
             weather: "hot",
         },
-        validationRules,
+        validationRules
     );
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        console.log(
-            "[AddItemModal] handleFormSubmit called. Values:",
-            values,
-            "isValid:",
-            isValid,
-        );
         if (isValid) {
             onAddItem(values);
             handleReset();

@@ -1,0 +1,9 @@
+/* LoginModal styles */
+.modal__error_global {
+    color: #e74c3c;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin: 12px 0;
+    display: block;
+}

@@ -1,0 +1,68 @@
+/* the box around/behind the toggle */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    border: 2px solid #7e7e7e;
+    border-radius: 20px;
+    width: 56px;
+    height: 28px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    padding: 0;
+
+    z-index: 0;
+}
+
+.toggle-switch__checkbox {
+    visibility: hidden;
+    position: absolute;
+    top: -20px;
+}
+
+.toggle-switch__checkbox:checked + .toggle-switch__circle {
+    right: -2px;
+    left: unset;
+}
+
+/* the "slider" */
+.toggle-switch__circle {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: 28px;
+    height: 28px;
+    background-color: #000;
+    border-style: none;
+    border-radius: 50%;
+    z-index: -1;
+    will-change: transform;
+
+    transition: left 0.5s cubic-bezier(0.25, 0.1, 0.25, 1),
+        right 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.toggle-switch__value {
+    flex: 1;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1;
+
+    user-select: none;
+    color: #7e7e7e;
+    transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.toggle-switch__checkbox:checked ~ .toggle-switch__value_right {
+    color: #fff;
+}
+
+.toggle-switch__checkbox:not(:checked) ~ .toggle-switch__value_left {
+    color: #fff;
+}
+
+.toggle-switch:hover
+    .toggle-switch__checkbox:not(:checked)
+    + .toggle-switch__circle {
+    transform: translateX(2px);
+}

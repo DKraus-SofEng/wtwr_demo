@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
             const storedToken = localStorage.getItem("jwt");
             if (storedToken) {
                 try {
-                    const response = await fetch(`${BASE_URL}/users/me`, {
+                    const response = await fetch(`${BASE_URL}/api/auth/me`, {
                         headers: {
                             Authorization: `Bearer ${storedToken}`,
                         },

@@ -130,27 +130,12 @@ function App() {
     }
 
     function handleAddItemSubmit(inputValues) {
-        console.log("[App] handleAddItemSubmit called. token:", token);
-        console.log("[App] add item payload:", inputValues);
         addItem({ ...inputValues, token })
-            .then((item) => {
-                if (!item || !item._id) {
-                    console.error(
-                        "Add item API returned unexpected response:",
-                        item,
-                    );
-                }
-                setClothingItems([item, ...clothingItems]);
+            .then((res) => {
+                setClothingItems([res.data, ...clothingItems]);
             })
-            .catch((err) => {
-                console.error("Failed to add item:", err);
-            });
+            .catch(console.error);
     }
-
-    // Log token changes for debugging
-    useEffect(() => {
-        console.log("[App] token changed:", token);
-    }, [token]);
 
     function handleDeleteItem() {
         deleteItem(cardToDelete._id, token)
@@ -170,8 +155,8 @@ function App() {
                 .then((updatedCard) => {
                     setClothingItems((cards) =>
                         cards.map((item) =>
-                            item._id === id ? updatedCard.data : item,
-                        ),
+                            item._id === id ? updatedCard.data : item
+                        )
                     );
                 })
                 .catch(console.error);
@@ -181,8 +166,8 @@ function App() {
                 .then((updatedCard) => {
                     setClothingItems((cards) =>
                         cards.map((item) =>
-                            item._id === id ? updatedCard.data : item,
-                        ),
+                            item._id === id ? updatedCard.data : item
+                        )
                     );
                 })
                 .catch(console.error);
@@ -256,24 +241,10 @@ function App() {
             })
             .catch(console.error);
     }, []);
-    console.log("clothingItems", clothingItems);
-    console.log("weatherData", weatherData);
 
     return (
         <CurrentTemperatureUnitProvider>
             <div className="app">
-                <div
-                    style={{
-                        background: "yellow",
-                        color: "black",
-                        fontWeight: "bold",
-                        padding: "1rem",
-                        textAlign: "center",
-                        zIndex: 9999,
-                    }}
-                >
-                    TEST: If you see this, React is rendering!
-                </div>
                 <Header
                     weatherData={weatherData}
                     handleOpenAddGarmentModal={handleOpenAddGarmentModal}
@@ -316,7 +287,6 @@ function App() {
                             </ProtectedRoute>
                         }
                     ></Route>
-                    <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
                 <Footer />
                 <RegisterModal

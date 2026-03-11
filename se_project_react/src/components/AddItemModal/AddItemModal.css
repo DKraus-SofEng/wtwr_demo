@@ -1,0 +1,5 @@
+/* Prevent radio buttons from getting red borders */
+.modal__radio-btn_type_error {
+    border-color: initial;
+    accent-color: rgba(0, 0, 0, 1);
+}

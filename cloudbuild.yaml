@@ -7,6 +7,21 @@ steps:
         "us-central1-docker.pkg.dev/$PROJECT_ID/wtwr-demo-backend/wtwr-backend:$COMMIT_SHA",
         ".",
       ]
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: gcloud
+    args:
+      [
+        "run",
+        "deploy",
+        "wtwr-backend-287197084974",
+        "--image",
+        "us-central1-docker.pkg.dev/$PROJECT_ID/wtwr-demo-backend/wtwr-backend:$COMMIT_SHA",
+        "--region",
+        "us-west3",
+        "--platform",
+        "managed",
+        "--allow-unauthenticated",
+      ]
 images:
   - "us-central1-docker.pkg.dev/$PROJECT_ID/wtwr-demo-backend/wtwr-backend:$COMMIT_SHA"
 options:

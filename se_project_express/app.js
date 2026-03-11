@@ -22,7 +22,7 @@ mongoose
 app.use(express.json());
 app.use(
   cors({
-    origin: "d ",
+    origin: "https://lucky-pudding-e6ce7a.netlify.app",
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     credentials: true,
   })

@@ -4,6 +4,7 @@ const {
   createUser,
   getCurrentUser,
   updateCurrentUser,
+  updateAvatar,
 } = require("../controllers/users");
 const { celebrate, Joi } = require("celebrate");
 const {
@@ -11,15 +12,14 @@ const {
   validateSigninBody,
   validateUpdateUserBody,
 } = require("../middlewares/validation");
-const multer = require("multer");
-const upload = multer({ dest: "uploads/" });
-const { updateAvatar } = require("../controllers/users");
 const auth = require("../middlewares/auth");
 
 router.post("/signin", validateSigninBody, login);
 router.post("/signup", validateUsersBody, createUser);
 router.get("/me", getCurrentUser);
 router.patch("/me", validateUpdateUserBody, updateCurrentUser);
-router.post("/me/avatar", auth, upload.single("avatar"), updateAvatar);
+
+// Update avatar using a URL in the request body
+router.patch("/me/avatar", auth, updateAvatar);
 
 module.exports = router;

@@ -134,9 +134,6 @@ function App() {
             .then((res) => {
                 // Unwrap data if present, and patch owner if missing
                 let newItem = res.data ?? res;
-                if (user && (!newItem.owner || newItem.owner !== user._id)) {
-                    newItem = { ...newItem, owner: user._id };
-                }
                 setClothingItems([newItem, ...clothingItems]);
             })
             .catch(console.error);
@@ -158,12 +155,9 @@ function App() {
             // Like the item
             addCardLike(id, token)
                 .then((updatedCard) => {
+                    let newItem = updatedCard.data ?? updatedCard;
                     setClothingItems((cards) =>
-                        cards.map((item) =>
-                            item._id === id
-                                ? (updatedCard.data ?? updatedCard)
-                                : item,
-                        ),
+                        cards.map((item) => (item._id === id ? newItem : item)),
                     );
                 })
                 .catch(console.error);
@@ -171,12 +165,9 @@ function App() {
             // Unlike the item
             removeCardLike(id, token)
                 .then((updatedCard) => {
+                    let newItem = updatedCard.data ?? updatedCard;
                     setClothingItems((cards) =>
-                        cards.map((item) =>
-                            item._id === id
-                                ? (updatedCard.data ?? updatedCard)
-                                : item,
-                        ),
+                        cards.map((item) => (item._id === id ? newItem : item)),
                     );
                 })
                 .catch(console.error);

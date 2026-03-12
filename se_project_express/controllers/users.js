@@ -105,14 +105,15 @@ const updateCurrentUser = (req, res, next) => {
 };
 
 // UPDATE AVATAR
-// Handles file upload for user avatar using multer middleware in the route
+// Accepts a URL string for the avatar
 const updateAvatar = (req, res, next) => {
-  if (!req.file) {
-    return next(new BadRequestError("No file uploaded"));
+  const { avatar } = req.body;
+  if (!avatar) {
+    return next(new BadRequestError("No avatar URL provided"));
   }
   User.findByIdAndUpdate(
     req.user._id,
-    { avatar: req.file.path }, // Save the file path from multer upload
+    { avatar },
     { new: true, runValidators: true }
   )
     .orFail()

@@ -6,10 +6,9 @@ const {
 } = require(`../utils/errors`);
 
 // POST CLOTHING ITEM
-// Handles file upload for clothing item images using multer middleware in the route
 const createClothingItem = (req, res, next) => {
   const { name, weather, image } = req.body;
-  const owner = "507f191e810c19729de860ea"; // Demo ObjectId for testing
+  const owner = req.user._id; // Use the authenticated user's ID
   // Required fields check
   if (!name || !weather || !image) {
     return next(
@@ -17,7 +16,8 @@ const createClothingItem = (req, res, next) => {
     );
   }
   return ClothingItem.create({ name, weather, imageUrl: image, owner })
-    .then((item) => res.status(201).send({ data: item }))
+    .then((item) => item.populate("owner"))
+    .then((populatedItem) => res.status(201).send(populatedItem))
     .catch((err) => {
       console.error("Mongoose error:", err);
       if (err.name === "ValidationError") {
@@ -30,6 +30,7 @@ const createClothingItem = (req, res, next) => {
 // GET CLOTHING ITEMS
 const getClothingItems = (req, res, next) => {
   ClothingItem.find({})
+    .populate("owner")
     .then((items) => res.status(200).send(items))
     .catch((err) => next(err));
 };
@@ -37,18 +38,18 @@ const getClothingItems = (req, res, next) => {
 // UPDATE CLOTHING ITEMS
 const updateClothingItem = (req, res, next) => {
   const { itemId } = req.params;
-  const baseUrl = process.env.BASE_URL || "http://localhost:8080";
-  let imageUrl;
-  if (req.file) {
-    imageUrl = `${baseUrl}/uploads/${req.file.filename}`;
-  } else if (req.body.image) {
-    imageUrl = req.body.image;
-  } else {
-    return next(new BadRequestError("Image file or image URL is required"));
+  const { image } = req.body;
+  if (!image) {
+    return next(new BadRequestError("Image URL is required"));
   }
-  ClothingItem.findByIdAndUpdate(itemId, { $set: { imageUrl } }, { new: true })
+  ClothingItem.findByIdAndUpdate(
+    itemId,
+    { $set: { imageUrl: image } },
+    { new: true }
+  )
     .orFail()
-    .then((clothingItem) => res.status(200).send({ data: clothingItem }))
+    .then((clothingItem) => clothingItem.populate("owner"))
+    .then((populatedItem) => res.status(200).send(populatedItem))
     .catch((err) => {
       if (err.name === "ValidationError") {
         return next(new BadRequestError("Invalid clothing item data"));
@@ -92,7 +93,8 @@ const likeClothingItem = (req, res, next) => {
     { new: true }
   )
     .orFail()
-    .then((item) => res.status(200).send({ data: item }))
+    .then((item) => item.populate("owner"))
+    .then((populatedItem) => res.status(200).send(populatedItem))
     .catch((err) => {
       if (err.name === "DocumentNotFoundError") {
         return next(new NotFoundError("Item not found"));
@@ -111,7 +113,8 @@ const dislikeClothingItem = (req, res, next) => {
     { new: true }
   )
     .orFail()
-    .then((item) => res.status(200).send({ data: item }))
+    .then((item) => item.populate("owner"))
+    .then((populatedItem) => res.status(200).send(populatedItem))
     .catch((err) => {
       if (err.name === "DocumentNotFoundError") {
         return next(new NotFoundError("Item not found"));

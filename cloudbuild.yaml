@@ -17,7 +17,7 @@ steps:
         "--image",
         "us-central1-docker.pkg.dev/$PROJECT_ID/wtwr-demo-backend/wtwr-backend:$COMMIT_SHA",
         "--region",
-        "us-west3",
+        "us-central1",
         "--platform",
         "managed",
         "--allow-unauthenticated",

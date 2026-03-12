@@ -13,9 +13,6 @@ RUN npm install --production
 # Copy the rest of the application code
 COPY . .
 
-# Debug: List contents of se_project_express to verify files are present
-RUN ls -l /usr/src/app/se_project_express
-
 # Expose the port Cloud Run will use
 EXPOSE 8080
 

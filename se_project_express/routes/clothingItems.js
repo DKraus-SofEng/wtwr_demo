@@ -13,7 +13,7 @@ const { celebrate, Joi } = require("celebrate");
 // CRUD
 
 // CREATE
-router.post("/", createClothingItem);
+router.post("/", auth, createClothingItem);
 
 // READ
 router.get("/", getClothingItems);

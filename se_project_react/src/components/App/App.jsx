@@ -132,7 +132,12 @@ function App() {
     function handleAddItemSubmit(inputValues) {
         addItem({ ...inputValues, token })
             .then((res) => {
-                setClothingItems([res.data, ...clothingItems]);
+                // Unwrap data if present, and patch owner if missing
+                let newItem = res.data ?? res;
+                if (user && (!newItem.owner || newItem.owner !== user._id)) {
+                    newItem = { ...newItem, owner: user._id };
+                }
+                setClothingItems([newItem, ...clothingItems]);
             })
             .catch(console.error);
     }
@@ -239,12 +244,16 @@ function App() {
     }, []);
 
     useEffect(() => {
-        getClothingItems()
-            .then((dbItems) => {
-                setClothingItems([...dbItems, ...defaultClothingItems]);
-            })
-            .catch(console.error);
-    }, []);
+        if (user) {
+            getClothingItems()
+                .then((dbItems) => {
+                    setClothingItems([...dbItems, ...defaultClothingItems]);
+                })
+                .catch(console.error);
+        } else {
+            setClothingItems([...defaultClothingItems]);
+        }
+    }, [user]);
 
     return (
         <CurrentTemperatureUnitProvider>

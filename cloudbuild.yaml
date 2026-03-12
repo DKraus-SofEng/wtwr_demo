@@ -13,7 +13,7 @@ steps:
       [
         "run",
         "deploy",
-        "wtwr-backend-287197084974",
+        "wtwr-backend",
         "--image",
         "us-central1-docker.pkg.dev/$PROJECT_ID/wtwr-demo-backend/wtwr-backend:$COMMIT_SHA",
         "--region",

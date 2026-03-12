@@ -14,9 +14,11 @@ function addItem({ name, imageUrl, weather, token }) {
             Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ name, image: imageUrl, weather }),
-    }).then((res) => {
-        return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-    });
+    })
+        .then((res) => {
+            return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+        })
+        .then((data) => data.data); // unwrap the data property
 }
 
 function deleteItem(id, token) {

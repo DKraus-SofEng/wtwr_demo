@@ -4,11 +4,11 @@ FROM node:18-slim
 # Set the working directory inside the container
 WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json (if available)
-COPY package*.json ./
+# Copy backend package.json and package-lock.json
+COPY se_project_express/package*.json ./se_project_express/
 
-# Install dependencies
-RUN npm install --production
+# Install backend dependencies
+RUN cd se_project_express && npm install --production
 
 # Copy the rest of the application code
 COPY . .

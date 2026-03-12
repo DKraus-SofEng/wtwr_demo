@@ -13,7 +13,7 @@ function addItem({ name, imageUrl, weather, token }) {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ name, imageUrl, weather }),
+        body: JSON.stringify({ name, image: imageUrl, weather }),
     }).then((res) => {
         return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
     });
@@ -62,7 +62,7 @@ function addCardLike(id, token) {
             Authorization: `Bearer ${token}`,
         },
     }).then((res) =>
-        res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
+        res.ok ? res.json() : Promise.reject(`Error: ${res.status}`),
     );
 }
 function removeCardLike(id, token) {
@@ -73,7 +73,7 @@ function removeCardLike(id, token) {
             Authorization: `Bearer ${token}`,
         },
     }).then((res) =>
-        res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
+        res.ok ? res.json() : Promise.reject(`Error: ${res.status}`),
     );
 }
 export {

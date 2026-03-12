@@ -271,9 +271,7 @@ function App() {
                         textAlign: "center",
                         zIndex: 9999,
                     }}
-                >
-                    TEST: If you see this, React is rendering!
-                </div>
+                ></div>
                 <Header
                     weatherData={weatherData}
                     handleOpenAddGarmentModal={handleOpenAddGarmentModal}

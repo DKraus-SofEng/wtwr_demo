@@ -155,8 +155,10 @@ function App() {
                 .then((updatedCard) => {
                     setClothingItems((cards) =>
                         cards.map((item) =>
-                            item._id === id ? updatedCard.data : item
-                        )
+                            item._id === id
+                                ? (updatedCard.data ?? updatedCard)
+                                : item,
+                        ),
                     );
                 })
                 .catch(console.error);
@@ -166,8 +168,10 @@ function App() {
                 .then((updatedCard) => {
                     setClothingItems((cards) =>
                         cards.map((item) =>
-                            item._id === id ? updatedCard.data : item
-                        )
+                            item._id === id
+                                ? (updatedCard.data ?? updatedCard)
+                                : item,
+                        ),
                     );
                 })
                 .catch(console.error);

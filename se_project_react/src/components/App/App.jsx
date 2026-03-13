@@ -132,9 +132,8 @@ function App() {
     function handleAddItemSubmit(inputValues) {
         addItem({ ...inputValues, token })
             .then((res) => {
-                // Unwrap data if present, and patch owner if missing
                 let newItem = res.data ?? res;
-                setClothingItems([newItem, ...clothingItems]);
+                setClothingItems((prev) => [newItem, ...prev]);
             })
             .catch(console.error);
     }

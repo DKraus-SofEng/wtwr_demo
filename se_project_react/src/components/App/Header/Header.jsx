@@ -49,7 +49,11 @@ function Header({
             <header className="header">
                 {/* Left side: logo and location */}
                 <div className="header__side">
-                    <Link to="/">
+                    <Link
+                        to="/"
+                        aria-label="Go to home page"
+                        title="Go to home page"
+                    >
                         <img
                             className="header__logo"
                             src={logo}
@@ -90,9 +94,15 @@ function Header({
                                     className="header__avatar"
                                     src={user.avatar}
                                     alt={`${user.name}'s avatar`}
+                                    aria-label="User avatar"
+                                    title="User avatar"
                                 />
                             ) : (
-                                <div className="avatar-placeholder">
+                                <div
+                                    className="avatar-placeholder"
+                                    aria-label="User avatar placeholder"
+                                    title="User avatar placeholder"
+                                >
                                     {user.name.charAt(0).toUpperCase()}
                                 </div>
                             )}
@@ -105,6 +115,7 @@ function Header({
                         className="header__menu-btn"
                         onClick={toggleMobileMenu}
                         aria-label="Open menu"
+                        title="Open menu"
                     >
                         <span className="header__menu-icon"></span>
                     </button>
@@ -119,12 +130,16 @@ function Header({
                             <button
                                 onClick={handleOpenAddGarmentModal}
                                 className="header__add-clothes-btn"
+                                aria-label="Add clothes"
+                                title="Add clothes"
                             >
                                 + Add clothes
                             </button>
                             <Link
                                 className="header__profile-link"
                                 to="/profile"
+                                aria-label="Go to profile"
+                                title="Go to profile"
                             >
                                 <p className="header__userName">{user.name}</p>
                                 {user.avatar ? (
@@ -132,9 +147,15 @@ function Header({
                                         className="header__avatar"
                                         src={user.avatar}
                                         alt={`${user.name}'s avatar`}
+                                        aria-label="User avatar"
+                                        title="User avatar"
                                     />
                                 ) : (
-                                    <div className="avatar-placeholder">
+                                    <div
+                                        className="avatar-placeholder"
+                                        aria-label="User avatar placeholder"
+                                        title="User avatar placeholder"
+                                    >
                                         {user.name.charAt(0).toUpperCase()}
                                     </div>
                                 )}
@@ -146,12 +167,16 @@ function Header({
                             <button
                                 className="header__auth-btn"
                                 onClick={handleOpenRegisterModal}
+                                aria-label="Sign Up"
+                                title="Sign Up"
                             >
                                 Sign Up
                             </button>
                             <button
                                 className="header__auth-btn"
                                 onClick={handleOpenLoginModal}
+                                aria-label="Log In"
+                                title="Log In"
                             >
                                 Log In
                             </button>

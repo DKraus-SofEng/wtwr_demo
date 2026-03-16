@@ -24,9 +24,15 @@ function Sidebar({ handleOpenEditProfileModal }) {
                         alt={
                             user?.name ? `${user.name}'s avatar` : "User avatar"
                         }
+                        aria-label="User avatar"
+                        title="User avatar"
                     />
                 ) : (
-                    <div className="avatar-placeholder">
+                    <div
+                        className="avatar-placeholder"
+                        aria-label="User avatar placeholder"
+                        title="User avatar placeholder"
+                    >
                         {user?.name ? user.name.charAt(0).toUpperCase() : "U"}
                     </div>
                 )}
@@ -34,10 +40,17 @@ function Sidebar({ handleOpenEditProfileModal }) {
             <button
                 className="sidebar__edit-profile"
                 onClick={handleOpenEditProfileModal}
+                aria-label="Change profile data"
+                title="Change profile data"
             >
                 Change profile data
             </button>
-            <button className="sidebar__logout" onClick={handleLogout}>
+            <button
+                className="sidebar__logout"
+                onClick={handleLogout}
+                aria-label="Log out"
+                title="Log out"
+            >
                 Log out
             </button>
         </aside>

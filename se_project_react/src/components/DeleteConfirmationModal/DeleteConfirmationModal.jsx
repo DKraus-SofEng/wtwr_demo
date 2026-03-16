@@ -20,6 +20,8 @@ function DeleteConfirmationModal({ isOpen, onClose, onConfirm }) {
                     type="button"
                     className="delete-confirmation-modal__close-btn"
                     onClick={onClose}
+                    aria-label="close icon"
+                    title="Close modal"
                 >
                     <img src={closeIcon} alt="close icon" />
                 </button>
@@ -35,6 +37,8 @@ function DeleteConfirmationModal({ isOpen, onClose, onConfirm }) {
                         type="button"
                         className="delete-confirmation-modal__confirm-btn"
                         onClick={onConfirm}
+                        aria-label="Confirm delete"
+                        title="Confirm delete"
                     >
                         Yes, delete item
                     </button>

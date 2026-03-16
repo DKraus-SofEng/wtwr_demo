@@ -23,7 +23,7 @@ describe("User Routes", () => {
     });
     console.log("Signup response:", res.body); // Log response for debugging
     expect([200, 201]).toContain(res.statusCode); // Accept 200 or 201
-    expect(res.body.data).toHaveProperty("email", "testuser@example.com");
+    expect(res.body.user).toHaveProperty("email", "testuser@example.com");
   });
 
   it("should sign in an existing user with POST /signin", async () => {

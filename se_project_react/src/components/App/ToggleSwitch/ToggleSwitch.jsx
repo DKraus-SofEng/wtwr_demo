@@ -16,12 +16,22 @@ function ToggleSwitch() {
                 className="toggle-switch__checkbox"
                 onChange={handleTempUnitChange}
                 checked={currentTempUnit === "C"}
+                aria-label="Switch between Fahrenheit and Celsius"
+                title="Switch between Fahrenheit and Celsius"
             />
             <span className="toggle-switch__circle"></span>
-            <span className="toggle-switch__value toggle-switch__value_left">
+            <span
+                className="toggle-switch__value toggle-switch__value_left"
+                aria-label="Fahrenheit"
+                title="Fahrenheit"
+            >
                 F
             </span>
-            <span className="toggle-switch__value toggle-switch__value_right">
+            <span
+                className="toggle-switch__value toggle-switch__value_right"
+                aria-label="Celsius"
+                title="Celsius"
+            >
                 C
             </span>
         </label>

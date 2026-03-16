@@ -42,7 +42,7 @@ function EditProfileModal({ isOpen, onClose, onEditProfile }) {
             name: user?.name || "",
             avatar: user?.avatar || "",
         },
-        validationRules
+        validationRules,
     );
 
     const handleFormSubmit = (event) => {
@@ -51,7 +51,7 @@ function EditProfileModal({ isOpen, onClose, onEditProfile }) {
             "[EditProfileModal] Submit clicked. isValid:",
             isValid,
             "values:",
-            values
+            values,
         );
         if (isValid) {
             onEditProfile(values);
@@ -60,7 +60,7 @@ function EditProfileModal({ isOpen, onClose, onEditProfile }) {
         } else {
             console.log(
                 "[EditProfileModal] Form is not valid. Errors:",
-                errors
+                errors,
             );
         }
     };
@@ -86,9 +86,11 @@ function EditProfileModal({ isOpen, onClose, onEditProfile }) {
             onClose={handleModalClose}
             title="Change profile data"
             buttonText="Save changes"
-            name="edit-profile-form"
+            name="edit-profile"
             handleSubmit={handleFormSubmit}
             isValid={isValid}
+            aria-label="Edit profile modal"
+            title="Edit profile modal"
         >
             <fieldset className="modal__fieldset">
                 {/* NAME INPUT */}

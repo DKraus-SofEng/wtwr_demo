@@ -1,11 +1,20 @@
 # Tripleten Software Engineering Program: Project React
 
+# WTWR (What to Wear) Monorepo
+
+> This project is a reimplementation of the original WTWR project, which used separate frontend/backend repos and a VM. It was redesigned as a monorepo and redeployed to modern cloud infrastructure for a more reliable, portfolio-ready demo.
+
+This is a monorepo containing both the React frontend and Express backend for the WTWR (What to Wear) project. The project is now deployed with:
+
+- **Frontend:** Netlify ([lucky-pudding-e6ce7a.netlify.app](https://lucky-pudding-e6ce7a.netlify.app))
+- **Backend:** Google Cloud Run (private API endpoint; all features accessed via the frontend)
+- **GitHub:** [wtwr_demo](https://github.com/DKraus-SofEng/wtwr_demo)
+
 ## Live Demo
 
-- **Frontend:** https://storage.googleapis.com/wtwr-demo-frontend-dk/index.html
-- **Backend API:** https://project-e358f1a6-c26a-4de7-bd3.uc.r.appspot.com
-
-The backend only accepts image URLs (not file uploads) for clothing items.
+- **Frontend Demo:** https://lucky-pudding-e6ce7a.netlify.app
+- **Backend API:** https://project-e358f1a6-c26a-4de7-bd3.uc.r.appspot.com  
+  _(API endpoint only; direct access in a browser will show “service unavailable.” Use the frontend to access all features.)_
 
 ## WTWR (What to Wear)
 
@@ -13,11 +22,10 @@ This is a React + Vite app that recommends clothing based on the current weather
 
 ## Features
 
-- Fetches real-time weather from OpenWeather API
-- Normalizes temperature (F/C) and day/night
-- Recommends clothing cards filtered by weather type (hot/warm/cold)
-- Temperature unit controlled via a context and a toggle switch
-- User can add their own clothing items via a modal form (image URL only)
+- Real-time weather from OpenWeather API
+- Temperature unit toggle (F/C) with accessible tooltips and aria-labels
+- Clothing recommendations filtered by weather: hot, warm, or cold
+- User authentication, add/view/like/delete clothing items
 - Responsive design for desktop and mobile
 
 ## Core Technologies / Tech Stack
@@ -30,43 +38,28 @@ This is a React + Vite app that recommends clothing based on the current weather
 - React Context API (state management)
 - HTML5
 
-## APIs / Backend
-
-- OpenWeather API (real-time weather data)
-- WTWR Express backend ([se_project_express](https://github.com/DKraus-SofEng/se_project_express))
-
-## Backend Integration
-
-This app requires the WTWR Express backend to provide user, clothing, and weather data.
-
-- By default, the frontend expects the backend at `https://project-e358f1a6-c26a-4de7-bd3.uc.r.appspot.com` (update API URL in your config if needed).
-- For local development, you can use `http://localhost:3001`.
-
-## How to Run
-
-1. Start the backend server (see backend README for details, or use the cloud backend)
-2. Start the frontend:
-   - Clone the repo
-   - Install dependencies: `npm install`
-   - Start the dev server: `npm run dev`
-   - App runs at http://localhost:5173
-
 ## Testing
 
-This project uses **Vitest** and **React Testing Library** for unit and integration tests.
-
-- All core components (App, RegisterModal, LoginModal, Sidebar) have basic render and interaction tests.
-- API error handling and loading states are tested for Sidebar.
-- Context and router providers are mocked for isolated component tests.
+This project uses **Vitest** and **React Testing Library** for unit and integration tests in the frontend, and **Jest** and **Supertest** for the backend.
 
 ### How to Run Tests
 
-```
-npm run test
-```
+Before running tests, make sure you have installed dependencies in each subproject:
 
-- All tests are located in the `src/tests/` folder.
-- Matchers from `@testing-library/jest-dom` are enabled for robust assertions.
+- **Frontend:**
+  ```
+  cd se_project_react
+  npm install
+  npm run test
+  ```
+- **Backend:**
+  ```
+  cd se_project_express
+  npm install
+  npm test
+  ```
+
+See each subproject's README for more details and advanced options.
 
 ## Known Issues
 
@@ -82,9 +75,9 @@ npm run test
 
 ### Location
 
-**Issue**: The app does not automatically detect and use the user’s location to fetch weather data. Users must manually select or enter their location.
+**Issue**: The app does not automatically detect and use the user’s location unless the user allows the browser to set their location.
 
-**Impact**: Weather and clothing recommendations may not be accurate or relevant unless the user sets their location each time.
+**Impact**: Weather and clothing recommendations may not be accurate or relevant.
 
 **Recommended Solutions**:
 
@@ -94,18 +87,8 @@ npm run test
 
 ## Links
 
-- **Figma**: [Design][(https://www.figma.com/design/bfVOvqlLmoKZ5lpro8WWBe/Sprint-14_-WTWR?node-id=0-1&p=f&t=AU8kFAxDCsvKCeJI-0](https://www.figma.com/design/bfVOvqlLmoKZ5lpro8WWBe/Sprint-14_-WTWR?node-id=0-1&p=f&t=AU8kFAxDCsvKCeJI-0)
-
-- **GitHub Pages**: [Deployed Project](https://DKraus-SofEng.github.io/se_project_react/)
-
-- **Project Pitch Video**: [Watch here](https://www.loom.com/share/c322926d4fff4ba684481389b3af9d2a)
-
-- **Backend Repo**: [se_project_express](https://github.com/DKraus-SofEng/se_project_express)
-
-## Deployment
-
-- Production backend API: https://project-e358f1a6-c26a-4de7-bd3.uc.r.appspot.com
-- Production frontend: https://storage.googleapis.com/wtwr-demo-frontend-dk/index.html
-- No custom domain is currently configured for the live demo. The public URL is the Google Cloud Storage bucket link above.
-- For local development, the frontend expects the backend at `http://localhost:3001`
-- Update the API URL in your frontend config to switch between local and production
+- **Live Demo:** https://lucky-pudding-e6ce7a.netlify.app
+- **GitHub:** [wtwr_demo](https://github.com/DKraus-SofEng/wtwr_demo)
+- **Figma:** [Design](https://www.figma.com/design/bfVOvqlLmoKZ5lpro8WWBe/Sprint-14_-WTWR?node-id=0-1&p=f&t=AU8kFAxDCsvKCeJI-0)
+- **Project Pitch Video:** [Watch here](https://www.loom.com/share/c322926d4fff4ba684481389b3af9d2a)
+- **Backend Repo:** [se_project_express](https://github.com/DKraus-SofEng/se_project_express)

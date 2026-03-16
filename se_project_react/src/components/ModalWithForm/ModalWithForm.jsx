@@ -20,6 +20,8 @@ function ModalWithForm({
                     type="button"
                     className="modal__close-btn modal__close-btn_type_form"
                     onClick={onClose}
+                    aria-label="close icon"
+                    title="Close modal"
                 >
                     <img src={closeIcon} alt="close icon" />
                 </button>
@@ -36,6 +38,8 @@ function ModalWithForm({
                                 !isValid ? "modal__submit-btn_disabled" : ""
                             }`}
                             disabled={!isValid}
+                            aria-label={buttonText}
+                            title={buttonText}
                         >
                             {buttonText}
                         </button>

@@ -31,7 +31,7 @@ function LoginModal({ isOpen, onClose, onLogin, handleOpenRegisterModal }) {
             email: "",
             password: "",
         },
-        validationRules
+        validationRules,
     );
 
     const [loginError, setLoginError] = useState("");
@@ -73,7 +73,7 @@ function LoginModal({ isOpen, onClose, onLogin, handleOpenRegisterModal }) {
                 } else {
                     setLoginError(
                         (result && result.message) ||
-                            "Login failed:  incorrect email or password."
+                            "Login failed:  incorrect email or password.",
                     );
                     setIsLoading(false);
                 }
@@ -117,6 +117,8 @@ function LoginModal({ isOpen, onClose, onLogin, handleOpenRegisterModal }) {
                     </button>
                 </div>
             }
+            aria-label="Login modal"
+            title="Login modal"
         >
             <fieldset className="modal__fieldset">
                 {/* EMAIL INPUT */}

@@ -14,7 +14,7 @@ function ClothesSection({
         (item) =>
             item.owner &&
             (typeof item.owner === "string" ? item.owner : item.owner._id) ===
-                user._id
+                user._id,
     );
 
     return (
@@ -24,6 +24,8 @@ function ClothesSection({
                 <button
                     onClick={handleOpenAddGarmentModal}
                     className="clothes-section__btn"
+                    aria-label="Add new item"
+                    title="Add new item"
                 >
                     + Add new
                 </button>

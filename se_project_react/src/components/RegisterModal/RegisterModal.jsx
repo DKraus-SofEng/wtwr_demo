@@ -64,7 +64,7 @@ function RegisterModal({ isOpen, onClose, onRegister, handleOpenLoginModal }) {
             name: "",
             avatar: "",
         },
-        validationRules
+        validationRules,
     );
 
     const [registerError, setRegisterError] = useState("");
@@ -136,6 +136,8 @@ function RegisterModal({ isOpen, onClose, onRegister, handleOpenLoginModal }) {
                     </button>
                 </div>
             }
+            aria-label="Register modal"
+            title="Register modal"
         >
             <fieldset className="modal__fieldset">
                 {registerError && (

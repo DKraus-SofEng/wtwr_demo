@@ -48,7 +48,11 @@ const createUser = (req, res, next) => {
     .then((user) => {
       const userObj = user.toObject();
       delete userObj.password; // Removes password before sending
-      res.status(201).send(userObj); // Send user directly
+      // Generate token
+      const token = jwt.sign({ _id: user._id }, JWT_SECRET, {
+        expiresIn: "7d",
+      });
+      res.status(201).json({ token, user: userObj }); // Send user and token
     })
     .catch((err) => {
       if (err.code === 11000) {

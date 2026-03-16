@@ -131,8 +131,7 @@ function App() {
 
     function handleAddItemSubmit(inputValues) {
         addItem({ ...inputValues, token })
-            .then((res) => {
-                let newItem = res.data ?? res;
+            .then((newItem) => {
                 setClothingItems((prev) => [newItem, ...prev]);
             })
             .catch(console.error);

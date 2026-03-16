@@ -18,7 +18,7 @@ function addItem({ name, imageUrl, weather, token }) {
         .then((res) => {
             return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
         })
-        .then((data) => data.data); // unwrap the data property
+        .then((data) => data);
 }
 
 function deleteItem(id, token) {

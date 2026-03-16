@@ -23,7 +23,10 @@ app.use(express.json());
 console.log("CORS ORIGIN SET TO:", "https://lucky-pudding-e6ce7a.netlify.app");
 app.use(
   cors({
-    origin: "https://lucky-pudding-e6ce7a.netlify.app",
+    origin: [
+      "http://localhost:3000",
+      "https://lucky-pudding-e6ce7a.netlify.app",
+    ],
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     credentials: true,
   })

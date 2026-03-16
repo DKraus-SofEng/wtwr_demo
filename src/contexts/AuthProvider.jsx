@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }) => {
                     });
                     if (response.ok) {
                         const data = await response.json();
-                        setUser(data.data.user);
+                        setUser(data);
                         setToken(storedToken);
                     } else {
                         localStorage.removeItem("jwt");

@@ -4,7 +4,9 @@ import { useAuth } from "../../../contexts/AuthContext.jsx";
 
 function ItemModal({ card, isOpen, onClose, handleOpenConfirmationModal }) {
     const { user } = useAuth();
-    const isOwn = card.owner === user?._id;
+    const isOwn =
+        (typeof card.owner === "string" && card.owner === user?._id) ||
+        (typeof card.owner === "object" && card.owner?._id === user?._id);
 
     function handleDelete() {
         handleOpenConfirmationModal(card);

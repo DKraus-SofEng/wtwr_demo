@@ -48,7 +48,7 @@ const createUser = (req, res, next) => {
     .then((user) => {
       const userObj = user.toObject();
       delete userObj.password; // Removes password before sending
-      res.status(201).send({ data: userObj }); // Wrap user in data property
+      res.status(201).send(userObj); // Send user directly
     })
     .catch((err) => {
       if (err.code === 11000) {
@@ -118,12 +118,20 @@ const updateAvatar = (req, res, next) => {
   )
     .orFail()
     .then((user) => res.status(200).send(user))
-    .catch(next);
+    .catch((err) => {
+      if (err.name === "ValidationError") {
+        return next(new BadRequestError("Invalid avatar data"));
+      }
+      if (err.name === "DocumentNotFoundError") {
+        return next(new NotFoundError("User not found"));
+      }
+      return next(err);
+    });
 };
 
 module.exports = {
-  createUser,
   getCurrentUser,
+  createUser,
   login,
   updateCurrentUser,
   updateAvatar,
